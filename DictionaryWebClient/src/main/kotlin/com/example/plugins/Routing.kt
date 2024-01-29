@@ -6,11 +6,9 @@ import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
-import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.freemarker.*
-import io.ktor.server.http.content.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -33,7 +31,7 @@ fun Application.configureRouting() {
             }
             get {
 
-                if (call.parameters["english"] == null) {
+                if (call.parameters["english"] == null || call.parameters["english"] == "") {
                     val dataMap = mapOf(
                         "word" to emptyWord,
                         "error" to ""
